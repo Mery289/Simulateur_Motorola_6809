@@ -25,3 +25,13 @@ Ce simulateur offre un environnement d'apprentissage interactif et didactique po
 ---
 
 ## 🧩 Architecture du projet
+Projet_Simulateur_6809/
+│
+├── src/
+│ ├── Main.java # Point d’entrée du programme
+│ ├── Memory.java # Gestion de la mémoire du processeur
+│ ├── Registers.java # Définition des registres
+│ └── CPU.java # Émulation du processeur (logique principale)
+│
+├── README.md # Description du projet
+└── docs/ # Documentation technique (optionnelle)
