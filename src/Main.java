@@ -34,23 +34,46 @@ public class Main {
     //     // Affiche les nouvelles valeurs
     //     reg.show();
     
-    //Tester le fichier CPU
-     // Création des composants
-        Memory meme = new Memory();
-        Registers regg = new Registers();
-        CPU cpu = new CPU(meme, regg);
+    // //Tester le fichier CPU
+    //  // Création des composants
+    //     Memory meme = new Memory();
+    //     Registers regg = new Registers();
+    //     CPU cpu = new CPU(meme, regg);
 
-        // Réinitialisation du processeur
-        cpu.reset();
+    //     // Réinitialisation du processeur
+    //     cpu.reset();
 
-        // Charger une instruction dans la mémoire
-        meme.write(0, 0x86); // Exemple d’opcode (LDA immédiat)
-        meme.write(1, 0x05); // Exemple d’opérande (valeur 5)
+    //     // Charger une instruction dans la mémoire
+    //     meme.write(0, 0x86); // Exemple d’opcode (LDA immédiat)
+    //     meme.write(1, 0x05); // Exemple d’opérande (valeur 5)
 
-        // Exécuter l’instruction
+    //     // Exécuter l’instruction
+    //     cpu.executeNextInstruction();
+
+    //     // Afficher l’état du CPU après exécution
+    //     cpu.showState();
+
+
+    // vérification de la communication de Registre memoire et CPU 
+ 
+
+        // --- Étape 1 : Création des composants ---
+        Memory mem = new Memory();      // Crée la mémoire (64 Ko)
+        Registers reg = new Registers(); // Crée les registres (A, B, X, Y, etc.)
+        CPU cpu = new CPU(mem, reg);     // Crée le CPU en le reliant à la mémoire et aux registres
+
+        // --- Étape 2 : Réinitialisation du CPU ---
+        cpu.reset(); // Le PC (Program Counter) revient à 0
+
+        // --- Étape 3 : Charger une instruction en mémoire ---
+        mem.write(0, 0x86);  // Exemple d’opcode : LDA immédiat
+        mem.write(1, 0x05);  // Exemple d’opérande : charger la valeur 5 dans A (pour plus tard)
+
+        // --- Étape 4 : Exécuter l'instruction ---
         cpu.executeNextInstruction();
 
-        // Afficher l’état du CPU après exécution
-        cpu.showState();
+        // --- Étape 5 : Afficher l’état des registres ---
+        reg.show();  // Permet de vérifier que tout fonctionne correctement
+
     }
 }
