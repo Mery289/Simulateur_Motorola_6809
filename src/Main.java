@@ -43,7 +43,7 @@ public class Main {
         // Réinitialisation du processeur
         cpu.reset();
 
-       git  // Charger une instruction dans la mémoire
+        // Charger une instruction dans la mémoire
         meme.write(0, 0x86); // Exemple d’opcode (LDA immédiat)
         meme.write(1, 0x05); // Exemple d’opérande (valeur 5)
 
