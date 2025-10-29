@@ -101,8 +101,16 @@ private void executeSTA() {
 
 // Instruction : JMP
 private void executeJMP() {
-    System.out.println("→ Instruction JMP détectée (à implémenter)");
+    // Lire l’adresse de saut (prochaine case mémoire après l’opcode)
+    int addr = memory.read(regs.PC);
+
+    // Modifier directement le compteur ordinal pour “sauter” à cette adresse
+    regs.PC = addr;
+
+    // Afficher l’information pour vérification
+    System.out.printf("JMP exécutée : saut vers %02X\n", addr);
 }
+
 
 
     // --- (Optionnel) méthode pour afficher l’état CPU ---
