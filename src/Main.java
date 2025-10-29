@@ -77,23 +77,39 @@ public class Main {
   
 
 
-        //tester la modification de notre executeNextInstruction dans notre CPU 
+    //tester la modification de notre executeNextInstruction dans notre CPU 
 
-         Memory mem = new Memory();
+        //  Memory mem = new Memory();
+        // Registers reg = new Registers();
+        // CPU cpu = new CPU(mem, reg);
+
+        // // Charger quelques opcodes de test en mémoire
+        // mem.write(0, 0x86); // LDA
+        // mem.write(1, 0x8B); // ADD
+        // mem.write(2, 0x97); // STA
+        // mem.write(3, 0x7E); // JMP
+        // mem.write(4, 0xFF); // Inconnu
+
+        // // Exécuter chaque instruction
+        // for (int i = 0; i < 5; i++) {
+        //     cpu.executeNextInstruction();
+        // }
+
+    //tester la méthode executeLDA()
+
+     Memory mem = new Memory();
         Registers reg = new Registers();
         CPU cpu = new CPU(mem, reg);
 
-        // Charger quelques opcodes de test en mémoire
-        mem.write(0, 0x86); // LDA
-        mem.write(1, 0x8B); // ADD
-        mem.write(2, 0x97); // STA
-        mem.write(3, 0x7E); // JMP
-        mem.write(4, 0xFF); // Inconnu
+        // Charger une instruction LDA dans la mémoire
+        mem.write(0, 0x86); // opcode LDA
+        mem.write(1, 0x05); // valeur immédiate à charger (5)
 
-        // Exécuter chaque instruction
-        for (int i = 0; i < 5; i++) {
-            cpu.executeNextInstruction();
-        }
+        // Exécuter l’instruction
+        cpu.executeNextInstruction();
+
+        // Vérification : afficher la valeur du registre A
+        System.out.println("Valeur actuelle de A = " + reg.A);
 
     }
 }

@@ -51,8 +51,19 @@ public class CPU {
 
 // Instruction : LDA (Load Accumulator A)
 private void executeLDA() {
-    System.out.println("→ Instruction LDA détectée (à implémenter)");
+    // Lire la valeur située juste après l’opcode
+    int value = memory.read(regs.PC);
+
+    // Avancer le compteur de programme
+    regs.PC++;
+
+    // Charger la valeur dans le registre A
+    regs.A = value;
+
+    // Afficher pour vérifier le résultat
+    System.out.printf("LDA exécutée : A <-- %02X\n", regs.A);
 }
+
 
 // Instruction : ADD
 private void executeADD() {
