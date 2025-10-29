@@ -67,13 +67,37 @@ private void executeLDA() {
 
 // Instruction : ADD
 private void executeADD() {
-    System.out.println("→ Instruction ADD détectée (à implémenter)");
+    int value = memory.read(regs.PC); // lire l’opérande
+    regs.PC++;
+    int result = regs.A + value;
+
+    if (result > 0xFF) { // gestion du dépassement (carry)
+        regs.CC = 1;
+        result &= 0xFF; // garde les 8 bits
+    } else {
+        regs.CC = 0;
+    }
+
+    regs.A = result;
+    System.out.printf("ADD exécutée : A <-- %02X (après addition de %02X)\n", regs.A, value);
 }
+
 
 // Instruction : STA
 private void executeSTA() {
-    System.out.println("→ Instruction STA détectée (à implémenter)");
+    // Lire l’adresse de destination juste après l’opcode
+    int addr = memory.read(regs.PC);
+
+    // Avancer le compteur de programme
+    regs.PC++;
+
+    // Écrire la valeur du registre A dans la mémoire à cette adresse
+    memory.write(addr, regs.A);
+
+    // Afficher le résultat pour le débogage
+    System.out.printf("STA exécutée : mémoire[%02X] <-- %02X\n", addr, regs.A);
 }
+
 
 // Instruction : JMP
 private void executeJMP() {

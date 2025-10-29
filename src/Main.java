@@ -95,22 +95,53 @@ public class Main {
         //     cpu.executeNextInstruction();
         // }
 
-    //tester la méthode executeLDA()
+    // //tester la méthode executeLDA()
 
-     Memory mem = new Memory();
+    //  Memory mem = new Memory();
+    //     Registers reg = new Registers();
+    //     CPU cpu = new CPU(mem, reg);
+
+    //     // Charger une instruction LDA dans la mémoire
+    //     mem.write(0, 0x86); // opcode LDA
+    //     mem.write(1, 0x05); // valeur immédiate à charger (5)
+
+    //     // Exécuter l’instruction
+    //     cpu.executeNextInstruction();
+
+    //     // Vérification : afficher la valeur du registre A
+    //     System.out.println("Valeur actuelle de A = " + reg.A);
+
+    // //tester la méthode executeADD()
+    
+    // Memory mem = new Memory();
+    //    Registers reg = new Registers();
+    //      CPU cpu = new CPU(mem, reg);
+    //      cpu.reset();
+    //      mem.write(0, 0x86); mem.write(1, 0x05); // LDA A ← 5
+    //      cpu.executeNextInstruction();
+    //     System.out.println("Valeur actuelle de A = " + reg.A);
+    //     mem.write(2, 0x8B); mem.write(3, 0x03); // ADD A ← A+3
+    //     cpu.executeNextInstruction();
+    //     System.out.println("Valeur après d'addition de A = " + reg.A);
+    // 
+
+    //tester la méthode STA
+    Memory mem = new Memory();
         Registers reg = new Registers();
         CPU cpu = new CPU(mem, reg);
 
-        // Charger une instruction LDA dans la mémoire
+        // Étape 1 : Charger une valeur dans A (LDA)
         mem.write(0, 0x86); // opcode LDA
-        mem.write(1, 0x05); // valeur immédiate à charger (5)
+        mem.write(1, 0x09); // valeur immédiate (9)
+        cpu.executeNextInstruction(); // Exécute LDA → A = 9
 
-        // Exécuter l’instruction
-        cpu.executeNextInstruction();
+        // Étape 2 : Sauvegarder la valeur de A en mémoire à l’adresse 0x10
+        mem.write(2, 0x97); // opcode STA
+        mem.write(3, 0x10); // adresse où stocker la donnée
+        cpu.executeNextInstruction(); // Exécute STA → mémoire[0x10] = A
 
-        // Vérification : afficher la valeur du registre A
-        System.out.println("Valeur actuelle de A = " + reg.A);
-
+        // Étape 3 : Vérifier la valeur stockée en mémoire
+        System.out.println("Valeur en mémoire[10] = " + mem.read(0x10));
     }
 }
  
