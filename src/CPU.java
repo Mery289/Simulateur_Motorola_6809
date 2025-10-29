@@ -19,16 +19,56 @@ public class CPU {
 
     // --- Lecture et exécution d'une instruction ---
     public void executeNextInstruction() {
-        // Lire le code de l’instruction (opcode)
-        int opcode = memory.read(regs.PC);
+    // Lire l’opcode à l’adresse du PC
+    int opcode = memory.read(regs.PC);
+    System.out.printf("Instruction lue à l’adresse %04X : %02X\n", regs.PC, opcode);
 
-        System.out.printf("Instruction lue à l’adresse %04X : %02X\n", regs.PC, opcode);
+    // Avancer le compteur de programme (PC)
+    regs.PC++;
 
-        // Pour l’instant, on se contente d’avancer le compteur de programme
-        regs.PC++;
+    // Identifier et exécuter l’instruction correspondante
+    switch (opcode) {
+        case 0x86: // LDA immédiat
+            executeLDA();
+            break;
 
-        // Plus tard, on décodera ici le type d’instruction (LDA, ADD, JMP, etc.)
+        case 0x8B: // ADD A immédiat
+            executeADD();
+            break;
+
+        case 0x97: // STA direct
+            executeSTA();
+            break;
+
+        case 0x7E: // JMP
+            executeJMP();
+            break;
+
+        default:
+            System.out.printf("Opcode inconnu : %02X\n", opcode);
     }
+}
+
+// Instruction : LDA (Load Accumulator A)
+private void executeLDA() {
+    System.out.println("→ Instruction LDA détectée (à implémenter)");
+}
+
+// Instruction : ADD
+private void executeADD() {
+    System.out.println("→ Instruction ADD détectée (à implémenter)");
+}
+
+// Instruction : STA
+private void executeSTA() {
+    System.out.println("→ Instruction STA détectée (à implémenter)");
+}
+
+// Instruction : JMP
+private void executeJMP() {
+    System.out.println("→ Instruction JMP détectée (à implémenter)");
+}
+
 
     // --- (Optionnel) méthode pour afficher l’état CPU ---
     public void showState() {

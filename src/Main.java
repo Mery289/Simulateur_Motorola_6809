@@ -57,23 +57,45 @@ public class Main {
     // vérification de la communication de Registre memoire et CPU 
  
 
-        // --- Étape 1 : Création des composants ---
-        Memory mem = new Memory();      // Crée la mémoire (64 Ko)
-        Registers reg = new Registers(); // Crée les registres (A, B, X, Y, etc.)
-        CPU cpu = new CPU(mem, reg);     // Crée le CPU en le reliant à la mémoire et aux registres
+        // // --- Étape 1 : Création des composants ---
+        // Memory mem = new Memory();      // Crée la mémoire (64 Ko)
+        // Registers reg = new Registers(); // Crée les registres (A, B, X, Y, etc.)
+        // CPU cpu = new CPU(mem, reg);     // Crée le CPU en le reliant à la mémoire et aux registres
 
-        // --- Étape 2 : Réinitialisation du CPU ---
-        cpu.reset(); // Le PC (Program Counter) revient à 0
+        // // --- Étape 2 : Réinitialisation du CPU ---
+        // cpu.reset(); // Le PC (Program Counter) revient à 0
 
-        // --- Étape 3 : Charger une instruction en mémoire ---
-        mem.write(0, 0x86);  // Exemple d’opcode : LDA immédiat
-        mem.write(1, 0x05);  // Exemple d’opérande : charger la valeur 5 dans A (pour plus tard)
+        // // --- Étape 3 : Charger une instruction en mémoire ---
+        // mem.write(0, 0x86);  // Exemple d’opcode : LDA immédiat
+        // mem.write(1, 0x05);  // Exemple d’opérande : charger la valeur 5 dans A (pour plus tard)
 
-        // --- Étape 4 : Exécuter l'instruction ---
-        cpu.executeNextInstruction();
+        // // --- Étape 4 : Exécuter l'instruction ---
+        // cpu.executeNextInstruction();
 
-        // --- Étape 5 : Afficher l’état des registres ---
-        reg.show();  // Permet de vérifier que tout fonctionne correctement
+        // // --- Étape 5 : Afficher l’état des registres ---
+        // reg.show();  // Permet de vérifier que tout fonctionne correctement
+  
+
+
+        //tester la modification de notre executeNextInstruction dans notre CPU 
+
+         Memory mem = new Memory();
+        Registers reg = new Registers();
+        CPU cpu = new CPU(mem, reg);
+
+        // Charger quelques opcodes de test en mémoire
+        mem.write(0, 0x86); // LDA
+        mem.write(1, 0x8B); // ADD
+        mem.write(2, 0x97); // STA
+        mem.write(3, 0x7E); // JMP
+        mem.write(4, 0xFF); // Inconnu
+
+        // Exécuter chaque instruction
+        for (int i = 0; i < 5; i++) {
+            cpu.executeNextInstruction();
+        }
 
     }
 }
+ 
+
